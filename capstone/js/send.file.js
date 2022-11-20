@@ -26,6 +26,7 @@ function switchDiv(id){
     document.getElementById("box3").style.display = "none";
 
 
+
     document.getElementById("box2").dataset.show = "active";
     document.getElementById("box2").style.display = "unset";
   }
@@ -42,6 +43,8 @@ function switchDiv(id){
 
   }
 }
+
+
 
 _deptDropdown();
 
@@ -346,6 +349,17 @@ var rowGradesList;
                       icon: "success",
                       title: "File submitted ",
                     });       
+                    _deptDropdown();
+                    $("#semSelect").val("0").change();
+                    $("#subjectSelect").empty();
+                    $("#courseSelect").empty();
+                    $("#yearSelect").val("1st").change();
+
+
+                    $('#gradesFileTable').DataTable().clear().destroy();
+
+                    setGradesList();
+                    $('#fileExcel').val('');
                   }
                   else alert("Unable to Upload");
                 }
@@ -366,3 +380,117 @@ var rowGradesList;
     }
   
     })
+
+    setGradesList();
+    
+function setGradesList() {
+
+  $(document).ready(function () {
+
+      
+let tid = 5;
+
+      $.ajax({
+          url: "./sql_functions/teacher.grades.files.php",
+          data: 
+          {
+             teacher: tid
+          },
+          success: function (data) {
+              var filesData = JSON.parse(data);
+
+          if(filesData.length != 0){
+
+                    document.getElementById("gradesFileTable").style.visibility = 'unset';
+
+
+                $('#gradesFileTable').DataTable({
+                  "sScrollY": "500",
+                  "bScrollCollapse": true,
+                  
+                    data: filesData,
+                    columns: [
+                        { data: 'filename', },
+                        { data: 'subject_code' },
+                        { data: 'course_abbreviation', },
+                        { data: 'year_level' },
+                        { data: 'dept_status' },
+                        { data: 'vp_status' }
+          
+                    ],
+                    
+        
+                });
+
+                changeColor();
+
+          }
+          else{
+
+              document.getElementById("gradesFileTable").style.visibility = 'hidden';
+          }
+
+          }
+      })
+
+
+  });
+}
+
+
+function changeColor(){
+  var _row = document.querySelectorAll("#gradesFileTable tbody tr");
+  var val = [];
+  var val2=[];
+  // alert(_row.length);
+
+  for (let i = 0; i < _row.length; i++) {
+    val.push(
+      $("#gradesFileTable")
+        .find("tbody tr:eq(" + i + ")")
+        .find("td:eq(5)")
+        .text()
+    );
+    val2.push(
+      $("#gradesFileTable")
+        .find("tbody tr:eq(" + i + ")")
+        .find("td:eq(4)")
+        .text()
+    );
+  }
+
+  for (let j = 0; j < val.length; j++) {
+      if (val[j] == "pending") {
+        $("#gradesFileTable")
+          .find("tbody tr:eq(" + j + ")")
+          .find("td:eq(5)")
+          .addClass("bi bi-clock text-warning")
+        .text("");
+      }
+      else{
+        $("#gradesFileTable")
+        .find("tbody tr:eq(" + j + ")")
+        .find("td:eq(5)")
+        .addClass("bi bi-check-circle-fill text-success")
+        .text("");
+      }
+  }
+
+
+  for (let j = 0; j < val.length; j++) {
+    if (val2[j] == "pending") {
+      $("#gradesFileTable")
+        .find("tbody tr:eq(" + j + ")")
+        .find("td:eq(4)")
+        .addClass("bi bi-clock text-warning")
+        .text("");
+    }
+    else{
+      $("#gradesFileTable")
+      .find("tbody tr:eq(" + j + ")")
+      .find("td:eq(4)")
+      .addClass("bi bi-check-circle-fill text-success")
+      .text("");
+    }
+}
+}
