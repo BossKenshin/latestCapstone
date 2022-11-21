@@ -74,7 +74,8 @@ background-color:#c9c9c9;
 #teacherTable tr > *:nth-child(1),
 #subjectTable tr > *:nth-child(1),
 #assignedTeacherTable tr > *:nth-child(1),
-#studentList tr > *:nth-child(3) 
+#studentList tr > *:nth-child(3),
+#pendingTable tr > *:nth-child(1) 
 
  {
     display: none;
@@ -91,3 +92,40 @@ background-color:#c9c9c9;
     width: 100%;
    height: fit-content;
 }
+
+#box-wrapper{
+    width: 96%;
+    display: flex;
+    margin: 0 auto;
+}
+
+.dbox{
+    width: 100%;
+    height: 400px;
+}
+
+.dbox:first-child{
+    overflow-y: scroll;
+}
+
+
+
+#pendingTable tbody tr td i{
+cursor: pointer;
+font-size: 25px;
+}
+
+
+#pendingTable tbody tr td:nth-child(7) i{
+   color: rgb(8, 111, 54);
+    }
+
+    
+#pendingTable tbody tr td:nth-child(8) i{
+    color: rgb(111, 8, 8);
+     }
+/* 
+.approve, .reject, .view{
+   font-size: 40px;
+} */
+

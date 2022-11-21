@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2022 at 03:05 PM
+-- Generation Time: Nov 21, 2022 at 12:37 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.0.23
 
@@ -66,6 +66,28 @@ INSERT INTO `assigned_teachers` (`assigned_id`, `teacher_id`, `subject_id`, `cou
 (1, 5, 4, 2, '2022-2023', '1'),
 (2, 3, 2, 1, '2021-2022', '3'),
 (3, 5, 1, 7, '2020-2021', '4');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `completion`
+--
+
+CREATE TABLE `completion` (
+  `cid` int(11) NOT NULL,
+  `teacherid` int(11) NOT NULL,
+  `subjectid` int(11) NOT NULL,
+  `student_schoolid` int(11) NOT NULL,
+  `grade` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `completion`
+--
+
+INSERT INTO `completion` (`cid`, `teacherid`, `subjectid`, `student_schoolid`, `grade`) VALUES
+(3, 5, 25, 1235454545, '1.7'),
+(4, 5, 23, 1235454545, '1.5');
 
 -- --------------------------------------------------------
 
@@ -133,6 +155,21 @@ CREATE TABLE `gradefiles` (
   `vp_status` varchar(50) NOT NULL,
   `filename` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `gradefiles`
+--
+
+INSERT INTO `gradefiles` (`gfid`, `teacher_id`, `department_id`, `course_id`, `subject_id`, `dept_status`, `vp_status`, `filename`) VALUES
+(2, 5, 5, 1, 31, 'pending', 'pending', 'gradesheety$Rb#%&9.xlsx'),
+(3, 5, 5, 1, 24, 'pending', 'pending', 'gradesheet523erCyz.xlsx'),
+(4, 5, 5, 1, 29, 'pending', 'pending', 'gradesheete72q8WkP.xlsx'),
+(5, 5, 5, 1, 26, 'pending', 'pending', 'gradesheetEkenvRud.xlsx'),
+(6, 5, 5, 1, 17, 'pending', 'pending', 'gradesheet7yEXJ9n4.xlsx'),
+(7, 5, 5, 1, 26, 'pending', 'pending', 'gradesheetGT0aN3OM.xlsx'),
+(8, 5, 5, 1, 27, 'pending', 'pending', 'gradesheetKBp_WRHv.xlsx'),
+(9, 5, 5, 1, 60, 'pending', 'pending', 'gradesheet_8uSm4Gv.xlsx'),
+(10, 5, 5, 1, 38, 'pending', 'pending', 'gradesheetz4QE9DeW.xlsx');
 
 -- --------------------------------------------------------
 
@@ -296,7 +333,7 @@ CREATE TABLE `teacher` (
 
 INSERT INTO `teacher` (`teacher_id`, `teacher_username`, `teacher_password`, `teacher_firstname`, `teacher_lastname`, `teacher_middlename`, `dept_id`) VALUES
 (3, 'kyle132', 'kyle132', 'Luke', 'Rosales', 'Perinos', '33'),
-(5, 'clr123', 'clr11', 'Christian Lawrence', 'Rosales', 'Perino', '3'),
+(5, 'clr123', 'clr11', 'Christian Lawrence', 'Rosales', 'Perino', '5'),
 (6, 'asfd', 'asdf', 'Kyle', 'Rosales', 'Perino', '2'),
 (7, 'Jessi1', 'jessi1', 'Jessie', 'Ortega', 'Ypil', '2');
 
@@ -318,6 +355,12 @@ ALTER TABLE `assigned_teachers`
   ADD KEY `teacher_id` (`teacher_id`),
   ADD KEY `subject_id` (`subject_id`),
   ADD KEY `course_id` (`course_id`);
+
+--
+-- Indexes for table `completion`
+--
+ALTER TABLE `completion`
+  ADD PRIMARY KEY (`cid`);
 
 --
 -- Indexes for table `course`
@@ -387,6 +430,12 @@ ALTER TABLE `assigned_teachers`
   MODIFY `assigned_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `completion`
+--
+ALTER TABLE `completion`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
@@ -402,7 +451,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `gradefiles`
 --
 ALTER TABLE `gradefiles`
-  MODIFY `gfid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gfid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `grades`

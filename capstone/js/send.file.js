@@ -7,6 +7,18 @@ for (var i=0; i<boxes.length; i++) {
 }
 
 
+
+$("#btnbox1").click(function () {
+
+  _deptDropdown();
+  $("#semSelect").val("0").change();
+  $("#subjectSelect").empty();
+  $("#courseSelect").empty();
+  $("#yearSelect").val("1st").change();
+  $("#fileExcel").val("");
+
+})
+
 function switchDiv(id){
 
   if(id == "btnbox1"){
@@ -18,6 +30,8 @@ function switchDiv(id){
 
     document.getElementById("box1").dataset.show = "active";
     document.getElementById("box1").style.display = "unset";
+
+
   }
   else if(id == "btnbox2"){
     document.getElementById("box1").dataset.show = "hidden";
