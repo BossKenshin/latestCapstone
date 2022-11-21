@@ -4,14 +4,12 @@
 
     <div class="list-group" style="font-size: 14px;">
 
-        <p class="h6 text-light text-center">DEPARTMENT DASHBOARD</p>
+        <p class="h6 text-light text-center">VICE-PRESIDENT DASHBOARD</p>
         
         <hr>
         <br>
-        <a type="button" class="list-group-item list-group-item-action sidebar-btn" href="department.dashboard.php"><i class="bi bi-file-earmark-spreadsheet"></i>Pending Files</a>
-        <a type="button" class="list-group-item list-group-item-action sidebar-btn" href="teacher.send.files.php"><i class="bi bi-diagram-3-fill"></i>Teachers</a>
+        <a type="button" class="list-group-item list-group-item-action sidebar-btn" href="vp.dashboard.php"><i class="bi bi-file-earmark-spreadsheet"></i>Pending Files</a>
         <!-- <a type="button" class="list-group-item list-group-item-action sidebar-btn" href="manage.teacher.php"><i class="bi bi-people-fill"></i> Issues</a> -->
-      
         <br>
         <hr>
         <br>

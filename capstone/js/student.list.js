@@ -51,6 +51,7 @@ function setStudentList() {
 
 
                 $('#studentList').DataTable({
+             
                     data: studentData,
                     columns: [
                         { data: 'school_id', },

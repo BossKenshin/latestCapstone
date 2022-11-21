@@ -481,6 +481,13 @@ function changeColor(){
           .addClass("bi bi-clock text-warning")
         .text("");
       }
+      else if(val[j] == "rejected"){
+        $("#gradesFileTable")
+        .find("tbody tr:eq(" + j + ")")
+        .find("td:eq(5)")
+        .addClass("bi bi-x-octagon-fill text-danger")
+        .text("");
+      }
       else{
         $("#gradesFileTable")
         .find("tbody tr:eq(" + j + ")")
@@ -492,18 +499,32 @@ function changeColor(){
 
 
   for (let j = 0; j < val.length; j++) {
-    if (val2[j] == "pending") {
+    if (val2[j] === "approved") {
       $("#gradesFileTable")
         .find("tbody tr:eq(" + j + ")")
         .find("td:eq(4)")
-        .addClass("bi bi-clock text-warning")
+        .addClass("bi bi-check-circle-fill text-success")
         .text("");
+    }
+    else if(val2[j] == "rejected"){
+      $("#gradesFileTable")
+      .find("tbody tr:eq(" + j + ")")
+      .find("td:eq(4)")
+      .addClass("bi bi-x-octagon-fill text-danger")
+      .text("");
+
+      $("#gradesFileTable")
+      .find("tbody tr:eq(" + j + ")")
+      .find("td:eq(5)")
+      .addClass("bi bi-x-octagon-fill text-danger")
+      .text("");
+
     }
     else{
       $("#gradesFileTable")
       .find("tbody tr:eq(" + j + ")")
       .find("td:eq(4)")
-      .addClass("bi bi-check-circle-fill text-success")
+      .addClass("bi bi-clock text-warning")
       .text("");
     }
 }

@@ -10,12 +10,7 @@ function setPendingTable() {
 
 
         $.ajax({
-            url: "./sql_functions/fetch.pending.grades.list.php",
-            data:
-            {
-                dept: deptid
-
-            },
+            url: "./sql_functions/vp.fetch.pending.grades.list.php",
             success: function (data) {
 
 
@@ -96,12 +91,6 @@ $("#pendingTable").on("click", "td.view", function (e) {
        }
 
 
-var selectedFile;
-
-document.getElementById("fileInput").addEventListener("change", (event) => {
-    selectedFile = event.target.files[0];
-    console.log(selectedFile);
-  });
 
 
   $("#pendingTable").on("click", "td.approve", function (e) {
@@ -110,7 +99,7 @@ document.getElementById("fileInput").addEventListener("change", (event) => {
 
 
     $.ajax({
-            url: "./sql_functions/update.pending.grade.php",
+            url: "./sql_functions/vp.update.pending.grade.php",
             dataType: "script",
             data:
             {
@@ -151,7 +140,7 @@ document.getElementById("fileInput").addEventListener("change", (event) => {
 
 
     $.ajax({
-            url: "./sql_functions/update.pending.grade.php",
+            url: "./sql_functions/vp.update.pending.grade.php",
             dataType: "script",
             data:
             {

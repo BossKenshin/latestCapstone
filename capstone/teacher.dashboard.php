@@ -22,6 +22,10 @@
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+
+
 </head>
 
 <body>
@@ -73,13 +77,13 @@
                     <label for="filterStudents">Click to see Student list</label>
                     <button class="btn btn-primary" id="filterStudents" >List</button>
 
-                    <button class="btn btn-dark float-end" data-toggle="tooltip" id="btn-export-teacher" onclick="exportTableToExcel('studentList','StudentList')" data-placement="left" title="Export Table"><i class="bi bi-printer-fill"></i></button>
+                    <button class="btn btn-dark float-end" data-toggle="tooltip" id="btn-export-teacher" onclick="html_table_to_excel('xlsx', 'studentList')" data-placement="left" title="Export Table"><i class="bi bi-printer-fill"></i></button>
 
                 </div>
 
                 <div class="container bg-light mt-5 " id="box-content">
 
-                    <table id="studentList" class="display text-center mt-4" width="100%">
+                    <table id="studentList" class="display text-center mt-4 " width="100%">
                         <thead>
                             <tr>                                
                                 <th>School ID</th>
