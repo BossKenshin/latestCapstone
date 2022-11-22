@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2022 at 12:37 PM
+-- Generation Time: Nov 22, 2022 at 02:21 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.0.23
 
@@ -153,6 +153,7 @@ CREATE TABLE `gradefiles` (
   `subject_id` int(11) NOT NULL,
   `dept_status` varchar(50) NOT NULL,
   `vp_status` varchar(50) NOT NULL,
+  `admin_status` varchar(11) NOT NULL DEFAULT 'pending',
   `filename` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -160,16 +161,21 @@ CREATE TABLE `gradefiles` (
 -- Dumping data for table `gradefiles`
 --
 
-INSERT INTO `gradefiles` (`gfid`, `teacher_id`, `department_id`, `course_id`, `subject_id`, `dept_status`, `vp_status`, `filename`) VALUES
-(2, 5, 5, 1, 31, 'pending', 'pending', 'gradesheety$Rb#%&9.xlsx'),
-(3, 5, 5, 1, 24, 'pending', 'pending', 'gradesheet523erCyz.xlsx'),
-(4, 5, 5, 1, 29, 'pending', 'pending', 'gradesheete72q8WkP.xlsx'),
-(5, 5, 5, 1, 26, 'pending', 'pending', 'gradesheetEkenvRud.xlsx'),
-(6, 5, 5, 1, 17, 'pending', 'pending', 'gradesheet7yEXJ9n4.xlsx'),
-(7, 5, 5, 1, 26, 'pending', 'pending', 'gradesheetGT0aN3OM.xlsx'),
-(8, 5, 5, 1, 27, 'pending', 'pending', 'gradesheetKBp_WRHv.xlsx'),
-(9, 5, 5, 1, 60, 'pending', 'pending', 'gradesheet_8uSm4Gv.xlsx'),
-(10, 5, 5, 1, 38, 'pending', 'pending', 'gradesheetz4QE9DeW.xlsx');
+INSERT INTO `gradefiles` (`gfid`, `teacher_id`, `department_id`, `course_id`, `subject_id`, `dept_status`, `vp_status`, `admin_status`, `filename`) VALUES
+(2, 5, 5, 1, 31, 'approved', 'approved', 'pending', 'gradesheety$Rb#%&9.xlsx'),
+(3, 5, 5, 1, 24, 'approved', 'rejected', 'pending', 'gradesheet523erCyz.xlsx'),
+(4, 5, 5, 1, 29, 'rejected', 'pending', 'pending', 'gradesheete72q8WkP.xlsx'),
+(5, 5, 5, 1, 26, 'rejected', 'pending', 'pending', 'gradesheetEkenvRud.xlsx'),
+(6, 5, 5, 1, 17, 'rejected', 'pending', 'pending', 'gradesheet7yEXJ9n4.xlsx'),
+(7, 5, 5, 1, 26, 'rejected', 'pending', 'pending', 'gradesheetGT0aN3OM.xlsx'),
+(8, 5, 5, 1, 27, 'approved', 'approved', 'pending', 'gradesheetKBp_WRHv.xlsx'),
+(9, 5, 5, 1, 60, 'rejected', 'pending', 'pending', 'gradesheet_8uSm4Gv.xlsx'),
+(10, 5, 5, 1, 38, 'approved', 'approved', 'pending', 'gradesheetz4QE9DeW.xlsx'),
+(11, 5, 5, 1, 71, 'approved', 'approved', 'pending', 'gradesheetebYvdl8t.xlsx'),
+(12, 5, 5, 1, 23, 'approved', 'approved', 'pending', 'file.xlsxQMakPxdi'),
+(13, 5, 5, 1, 24, 'approved', 'approved', 'pending', 'qg26auvJfile.xlsx'),
+(14, 5, 5, 1, 24, 'approved', 'approved', 'pending', 'KpRLAaxffile.xlsx'),
+(15, 5, 5, 1, 22, 'approved', 'approved', 'pending', 'hH6EOGlnfile(1).xlsx');
 
 -- --------------------------------------------------------
 
@@ -179,9 +185,8 @@ INSERT INTO `gradefiles` (`gfid`, `teacher_id`, `department_id`, `course_id`, `s
 
 CREATE TABLE `grades` (
   `grades_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `course_id` int(11) NOT NULL,
+  `st_schoolid` varchar(255) NOT NULL,
+  `subject_code` varchar(11) NOT NULL,
   `grade` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -189,10 +194,13 @@ CREATE TABLE `grades` (
 -- Dumping data for table `grades`
 --
 
-INSERT INTO `grades` (`grades_id`, `student_id`, `subject_id`, `course_id`, `grade`) VALUES
-(7, 110, 12, 1, '1.7'),
-(9, 110, 13, 1, '1.8'),
-(10, 110, 44, 1, '1.2');
+INSERT INTO `grades` (`grades_id`, `st_schoolid`, `subject_code`, `grade`) VALUES
+(7, '1235454545', 'MMW', '1.7'),
+(10, '1235454545', 'NET 1', '1.2'),
+(12, '44332211', 'DISCRETE1', '1.2'),
+(13, '1235454545', 'DISCRETE1', '1.4'),
+(14, '44332211', 'GE7', 'INC'),
+(15, '1235454545', 'GE7', 'INC');
 
 -- --------------------------------------------------------
 
@@ -236,7 +244,7 @@ INSERT INTO `student` (`student_id`, `student_schoolid`, `student_firstname`, `s
 
 CREATE TABLE `subject` (
   `subject_id` int(11) NOT NULL,
-  `subject_code` varchar(50) NOT NULL,
+  `subject_code` varchar(11) NOT NULL,
   `subject_name` varchar(100) NOT NULL,
   `course_id` int(20) NOT NULL,
   `year_level` varchar(20) NOT NULL DEFAULT '1st',
@@ -334,7 +342,7 @@ CREATE TABLE `teacher` (
 INSERT INTO `teacher` (`teacher_id`, `teacher_username`, `teacher_password`, `teacher_firstname`, `teacher_lastname`, `teacher_middlename`, `dept_id`) VALUES
 (3, 'kyle132', 'kyle132', 'Luke', 'Rosales', 'Perinos', '33'),
 (5, 'clr123', 'clr11', 'Christian Lawrence', 'Rosales', 'Perino', '5'),
-(6, 'asfd', 'asdf', 'Kyle', 'Rosales', 'Perino', '2'),
+(6, 'asfd', 'asdf', 'Kyle', 'Rosales', 'Perino', '5'),
 (7, 'Jessi1', 'jessi1', 'Jessie', 'Ortega', 'Ypil', '2');
 
 --
@@ -389,8 +397,10 @@ ALTER TABLE `gradefiles`
 --
 ALTER TABLE `grades`
   ADD PRIMARY KEY (`grades_id`),
-  ADD KEY `student_id` (`student_id`),
-  ADD KEY `subject_id` (`subject_id`);
+  ADD KEY `student_id` (`st_schoolid`),
+  ADD KEY `subject_id` (`subject_code`),
+  ADD KEY `subject_code` (`subject_code`),
+  ADD KEY `st_schoolid` (`st_schoolid`);
 
 --
 -- Indexes for table `student`
@@ -451,13 +461,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `gradefiles`
 --
 ALTER TABLE `gradefiles`
-  MODIFY `gfid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `gfid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `grades_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `grades_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -476,16 +486,6 @@ ALTER TABLE `subject`
 --
 ALTER TABLE `teacher`
   MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `grades`
---
-ALTER TABLE `grades`
-  ADD CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
