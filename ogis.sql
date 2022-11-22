@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2022 at 02:21 PM
+-- Generation Time: Nov 22, 2022 at 08:25 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.0.23
 
@@ -70,24 +70,16 @@ INSERT INTO `assigned_teachers` (`assigned_id`, `teacher_id`, `subject_id`, `cou
 -- --------------------------------------------------------
 
 --
--- Table structure for table `completion`
+-- Table structure for table `completion_grade`
 --
 
-CREATE TABLE `completion` (
+CREATE TABLE `completion_grade` (
   `cid` int(11) NOT NULL,
   `teacherid` int(11) NOT NULL,
   `subjectid` int(11) NOT NULL,
   `student_schoolid` int(11) NOT NULL,
   `grade` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `completion`
---
-
-INSERT INTO `completion` (`cid`, `teacherid`, `subjectid`, `student_schoolid`, `grade`) VALUES
-(3, 5, 25, 1235454545, '1.7'),
-(4, 5, 23, 1235454545, '1.5');
 
 -- --------------------------------------------------------
 
@@ -174,8 +166,9 @@ INSERT INTO `gradefiles` (`gfid`, `teacher_id`, `department_id`, `course_id`, `s
 (11, 5, 5, 1, 71, 'approved', 'approved', 'pending', 'gradesheetebYvdl8t.xlsx'),
 (12, 5, 5, 1, 23, 'approved', 'approved', 'pending', 'file.xlsxQMakPxdi'),
 (13, 5, 5, 1, 24, 'approved', 'approved', 'pending', 'qg26auvJfile.xlsx'),
-(14, 5, 5, 1, 24, 'approved', 'approved', 'pending', 'KpRLAaxffile.xlsx'),
-(15, 5, 5, 1, 22, 'approved', 'approved', 'pending', 'hH6EOGlnfile(1).xlsx');
+(14, 5, 5, 1, 24, 'approved', 'approved', 'approved', 'KpRLAaxffile.xlsx'),
+(15, 5, 5, 1, 22, 'approved', 'approved', 'approved', 'hH6EOGlnfile(1).xlsx'),
+(16, 5, 5, 1, 62, 'approved', 'approved', 'approved', 'LihqzRerKpRLAaxffile.xlsx');
 
 -- --------------------------------------------------------
 
@@ -199,8 +192,20 @@ INSERT INTO `grades` (`grades_id`, `st_schoolid`, `subject_code`, `grade`) VALUE
 (10, '1235454545', 'NET 1', '1.2'),
 (12, '44332211', 'DISCRETE1', '1.2'),
 (13, '1235454545', 'DISCRETE1', '1.4'),
-(14, '44332211', 'GE7', 'INC'),
-(15, '1235454545', 'GE7', 'INC');
+(14, '44332211', 'GE7', '3.0'),
+(15, '1235454545', 'GE7', '2.4'),
+(16, '44332211', 'GE7', '3.0'),
+(17, '1235454545', 'GE7', '2.4'),
+(18, '44332211', 'GE7', '3.0'),
+(19, '1235454545', 'GE7', '2.4'),
+(20, '44332211', 'RESEARCH1', '1.2'),
+(21, '1235454545', 'RESEARCH1', '1.4'),
+(22, '1235454545', 'ACCTGA', '1.7'),
+(23, '1235454545', 'ACCTGA', '1.7'),
+(24, '1235454545', 'ACCTGA', '1.7'),
+(25, '1235454545', 'ACCTGA', '1.7'),
+(26, '1235454545', 'PE 1', '1.5'),
+(27, '1235454545', 'ACCTGA', '1.7');
 
 -- --------------------------------------------------------
 
@@ -226,15 +231,15 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `student_schoolid`, `student_firstname`, `student_lastname`, `student_middlename`, `student_deptID`, `student_courseID`, `year_level`, `section`, `student_startYear`) VALUES
-(109, '12341234', 'Jogo', 'Varra', 'Gue', '2', '2', '1st Year', 'A', '2022-11-13 18:47:56'),
+(109, '12341234', 'Jogo', 'Varra', 'Gue', '5', '1', '1st Year', 'A', '2022-11-13 18:47:56'),
 (110, '1235454545', 'Kyle ', 'Rosales', 'Perino', '5', '1', '1st Year', 'A', '2022-11-13 18:47:56'),
 (111, '12321214124', 'Wew', 'Daf', 'Ge', '5', '1', '1st Year', 'B', '2022-11-13 18:47:56'),
 (112, '44332211', 'Jusj', 'Ki', 'Wa', '5', '1', '1st Year', 'A', '2022-11-13 18:47:56'),
-(113, '20195281050', 'Christian Lawrence ', 'Rosales', 'Perino', '2', '2', '1st Year', 'A', '2022-11-13 18:47:56'),
-(114, '202153154234', 'Luke', 'Kelu', 'Kelu', '3', '3', '2nd Year', 'A', '2022-11-13 21:56:24'),
-(120, '217382135', 'Juliana', 'Rosales', 'Mae', '2', '2', '2nd Year', 'A', '2022-11-14 14:08:18'),
-(122, '1235554214', 'Mark', 'Caguya', 'Renzo', '2', '2', '2nd Year', 'A', '2022-11-14 14:08:18'),
-(123, '1234545454', 'Kuki', 'Parda', 'Lois', '2', '2', '3rd Year', 'A', '2022-11-14 14:20:17');
+(113, '20195281050', 'Christian Lawrence ', 'Rosales', 'Perino', '5', '1', '1st Year', 'A', '2022-11-13 18:47:56'),
+(114, '202153154234', 'Luke', 'Kelu', 'Kelu', '5', '1', '2nd Year', 'A', '2022-11-13 21:56:24'),
+(120, '217382135', 'Juliana', 'Rosales', 'Mae', '5', '1', '2nd Year', 'A', '2022-11-14 14:08:18'),
+(122, '1235554214', 'Mark', 'Caguya', 'Renzo', '5', '1', '2nd Year', 'A', '2022-11-14 14:08:18'),
+(123, '1234545454', 'Kuki', 'Parda', 'Lois', '5', '1', '3rd Year', 'A', '2022-11-14 14:20:17');
 
 -- --------------------------------------------------------
 
@@ -365,9 +370,9 @@ ALTER TABLE `assigned_teachers`
   ADD KEY `course_id` (`course_id`);
 
 --
--- Indexes for table `completion`
+-- Indexes for table `completion_grade`
 --
-ALTER TABLE `completion`
+ALTER TABLE `completion_grade`
   ADD PRIMARY KEY (`cid`);
 
 --
@@ -440,10 +445,10 @@ ALTER TABLE `assigned_teachers`
   MODIFY `assigned_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `completion`
+-- AUTO_INCREMENT for table `completion_grade`
 --
-ALTER TABLE `completion`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `completion_grade`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `course`
@@ -461,13 +466,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `gradefiles`
 --
 ALTER TABLE `gradefiles`
-  MODIFY `gfid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `gfid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `grades_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `grades_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `student`
